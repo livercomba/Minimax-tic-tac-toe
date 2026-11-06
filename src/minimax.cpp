@@ -3,7 +3,7 @@
 #include <utility>
 #include <chrono>
 
-std::pair<Coord, int> mini_max(Game game) {
+std::pair<Coord, int> mini_max(const Game game) {
     Coord move{std::make_pair(-1, -1)};
     auto start = std::chrono::high_resolution_clock::now();
     std::pair<Coord, int> returnValue = mini_max_recursive(game, true, move);

@@ -6,6 +6,6 @@ Coord RealIO::read()
         std::cin >> x >> y; 
         return {x, y}; 
 }
-void RealIO::write(std::string txt) {
+void RealIO::write(const std::string& txt) {
         std::cout << txt; 
 }

@@ -6,23 +6,23 @@
 
 class ConsoleIO {
 public:
-    virtual void write(std::string txt) = 0;
+    virtual void write(const std::string& txt) = 0;
     virtual Coord read() = 0;
 };
 
 class RealIO : public ConsoleIO {
 public:
     Coord read() override;  
-    void write(std::string txt) override;
+    void write(const std::string& txt) override;
 };
 
 class StubIO : public ConsoleIO {
 public:
     Coords inputs;
     std::size_t nextInput = 0;
-    StubIO(Coords input);
+    StubIO(const Coords& input);
     Coord read() override;
-    void write(std::string txt) override;
+    void write(const std::string& txt) override;
 };
 
 

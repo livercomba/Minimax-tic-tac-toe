@@ -1,6 +1,6 @@
 #include "io.h"
 #include <iostream>
-StubIO::StubIO(Coords input) {
+StubIO::StubIO(const Coords& input) {
     inputs = std::move(input);
 }
 Coord StubIO::read() {
@@ -10,6 +10,6 @@ Coord StubIO::read() {
     return inputs[nextInput++]; 
 
 }
-void StubIO::write(std::string txt) {
+void StubIO::write(const std::string& txt) {
     std::cout << txt; 
 }
