@@ -1,19 +1,33 @@
 #ifndef GAME_H
 #define GAME_H
+
 #include <string>
+#include <utility>
+#include <vector>
+#include <iostream>
+
+#include "types.h"
+#include "io.h"
+
+
+
 class Game {
 public:
-    unsigned short grid[3][3] {};
+    short grid[3][3] {0};
     bool crossTurn {};
     Game(); 
+    void GameLoop(ConsoleIO& console);
 
-    void PlayNext(int x, int y); 
+    int PlayNext(Coord coord);
+    std::string PrintBoard(bool withCoords = true); 
+    int position_number(); 
+    Coords next_possible_moves();
+    int CheckWin(); 
 
-    std::string PrintBoard(); 
-
-private: 
+    private: 
     void PlayMove(int x, int y, bool cross); 
-
-
 };
+
+
+
 #endif
