@@ -17,7 +17,7 @@
 - Inconsistent naming and formatting (camelCase variables next to snake_case functions).
 
 
-## How to test 
+## How to test:
 1. Clone repository
 ```bash
 git clone https://github.com/livercomba/Minimax-tic-tac-toe
@@ -28,5 +28,7 @@ cd Minimax-tic-tac-toe
 ```
 3. Compile (using g++ for example )
 ```bash
-g++ -std=c++17 -o tictactoe *.cpp
+g++ -std=c++17 -o tictactoe src/*.cpp
 ```
+## How to play:
+- coming soon
