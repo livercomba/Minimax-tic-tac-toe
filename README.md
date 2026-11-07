@@ -12,6 +12,6 @@
 
 **Code quality**
 - `Game` is copied by value throughout the search
-- cleaner `game` implementation, everything is bound to the `game`-class. Would be better to have separate type for gamestate and have the a static game utils class with static functions that alter the gamestate object and 
+- Lacks a cleaner `game` implementation, everything is bound to the `game`-class. Would be better to have separate type for gamestate and have the a static game utils class with static functions that alter the gamestate object and 
 - Repetition, too few helper functions and magic numbers hurt readability.
 - Inconsistent naming and formatting (camelCase variables next to snake_case functions).
