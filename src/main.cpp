@@ -6,7 +6,7 @@ int main() {
     RealIO console;
     //Coords coords = {{1, 2}, {0, 0}, {1,0}, {2,0}, {0, 1}, {1, 1}};
     //StubIO console(coords); 
-    game.GameLoop(console);
+    game.game_loop(console);
 
     
        

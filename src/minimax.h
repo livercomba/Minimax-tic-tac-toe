@@ -4,6 +4,6 @@
 #include "node.h"
 
 std::pair<Coord, int> mini_max(Game game);
-std::pair<Coord, int> mini_max_recursive(Game game, bool myTurn, Coord move);
+int mini_max_recursive(Game game, bool myTurn, int alpha, int beta);
 
 #endif

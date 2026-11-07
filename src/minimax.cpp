@@ -3,59 +3,66 @@
 #include <utility>
 #include <chrono>
 
-std::pair<Coord, int> mini_max(const Game game) {
-    Coord move{std::make_pair(-1, -1)};
+std::pair<Coord, int> mini_max(Game game) {
     auto start = std::chrono::high_resolution_clock::now();
-    std::pair<Coord, int> returnValue = mini_max_recursive(game, true, move);
+    
+    Coord bestMove{};
+    int bestScore = 0;
+    int score = -10;
+    Coords possibleMoves = game.next_possible_moves();
+    for(int i = 0; i<possibleMoves.size(); i++) {
+        std::cout << "trying possible move (" << possibleMoves[i].first << " " << possibleMoves[i].second << ")\n";
+        Game CopyGame = game;
+        CopyGame.play_next(possibleMoves[i]); 
+        score = mini_max_recursive(CopyGame, false, -1, 1);
+        if(score >= bestScore) {
+            bestMove = possibleMoves[i];
+            bestScore = score;
+        }
+    }
+    
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> elapsed = end - start;
     std::cout << "\nMini_max_recursive took: " << elapsed.count() << "ms\n";
-    return returnValue;
+    
+    
+    return {bestMove, 0};
 }
 
-std::pair<Coord, int> mini_max_recursive(Game game, bool myTurn, Coord move) {
-    int win {game.CheckWin()};
+int mini_max_recursive(Game game, bool max_turn, int alpha, int beta) {
+    int win {game.check_win()};
     if(win != 0) {
-        //std::cout << "Victory found:" << win << "\n" << game.PrintBoard(false);
-        return {move, win};   
+        return win;   
     }
+
+    std::cout << alpha << beta;
 
     Coords possibleMoves = game.next_possible_moves();
     if(possibleMoves.size() == 0) {
-        return {move, 0};
+        return 0;
     }
 
-    Coord bestMove;
-    int val{myTurn ? 1000 : -1000};
+    int val{max_turn ? -1000 : 1000};
     
     for(int i = 0; i<possibleMoves.size(); i++) {
         Game copyGame = game; 
-        Coord copyMove{};
-        if(move.first == -1 && move.second == -1) {
-            copyMove = possibleMoves[i];
+
+        copyGame.play_next(possibleMoves[i]);
+        int temp = mini_max_recursive(copyGame, !max_turn, alpha, beta);
+        val = max_turn ? std::max(temp, val) : std::min(temp, val);
+
+        if(max_turn) {
+            alpha = std::max(alpha, val);
         }
         else {
-            copyMove = move;
+            beta = std::min(beta, val);
         }
-
-
-
-        copyGame.PlayNext(possibleMoves[i]);
-        std::pair<Coord, int> temp = mini_max_recursive(copyGame, !myTurn, copyMove);
-        if(myTurn) {
-            if(temp.second <= val) {
-                val = temp.second;
-                bestMove = temp.first;
-            }
+        
+        if(alpha >= beta) {
+            return val;
         }
-        else {
-            if(temp.second >= val) {
-                val = temp.second;
-                bestMove = temp.first;
-            }
-        }
-                 
+         
     }    
-    return {bestMove, val};
+    return val;
 
 }

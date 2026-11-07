@@ -16,16 +16,17 @@ public:
     short grid[3][3] {0};
     bool crossTurn {};
     Game(); 
-    void GameLoop(ConsoleIO& console);
+    void game_loop(ConsoleIO& console);
 
-    int PlayNext(Coord coord);
-    std::string PrintBoard(bool withCoords = true); 
+    int play_next(Coord coord);
+    std::string print_board(bool withCoords = true); 
     int position_number(); 
     Coords next_possible_moves();
-    int CheckWin(); 
+    int check_win(); 
 
     private: 
-    void PlayMove(int x, int y, bool cross); 
+    void announce_winner(const std::string& winner);
+    void play_move(int x, int y, bool cross); 
 };
 
 
