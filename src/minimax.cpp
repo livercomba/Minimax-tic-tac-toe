@@ -25,7 +25,7 @@ std::pair<Coord, int> mini_max(Game game) {
     std::cout << "\nMini_max_recursive took: " << elapsed.count() << "ms\n";
     
     
-    return {bestMove, 0};
+    return {bestMove, bestScore};
 }
 
 int mini_max_recursive(Game game, bool max_turn, int alpha, int beta) {
