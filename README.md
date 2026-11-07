@@ -1,4 +1,4 @@
-# Tic tac toe AI that's using a minimax algorithm with alpha beta pruning to determine optimal move.
+## Tic tac toe AI using minimax with alpha beta pruning
 
 
 
