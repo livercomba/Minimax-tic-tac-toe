@@ -38,12 +38,15 @@ void Game::announce_winner(const std::string& winner) {
     std::cout << "------------------\n";
     std::cout << print_board(false);
     std::cout << "------------------\n";
-
 }
 
 int Game::play_next(Coord coord) {
     if(coord == std::make_pair(-1, -1)) {
         return -2;
+    }
+    if(grid[coord.first][coord.second] != 0) {
+        std::cerr << "illegal move";
+        throw "Illegal move";
     }
     play_move(coord.first, coord.second, crossTurn);
     crossTurn = !crossTurn;
@@ -52,7 +55,6 @@ int Game::play_next(Coord coord) {
 
 Coords Game::next_possible_moves() {
     Coords emptyCells;
-    
     for(int i = 0; i<3; i++ ) {
         for(int j = 0; j<3; j++) {
             if(grid[i][j] == 0) {

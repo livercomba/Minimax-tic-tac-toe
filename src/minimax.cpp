@@ -11,7 +11,6 @@ std::pair<Coord, int> mini_max(Game game) {
     int score = -10;
     Coords possibleMoves = game.next_possible_moves();
     for(int i = 0; i<possibleMoves.size(); i++) {
-        std::cout << "trying possible move (" << possibleMoves[i].first << " " << possibleMoves[i].second << ")\n";
         Game CopyGame = game;
         CopyGame.play_next(possibleMoves[i]); 
         score = mini_max_recursive(CopyGame, false, -1, 1);
@@ -35,7 +34,6 @@ int mini_max_recursive(Game game, bool max_turn, int alpha, int beta) {
         return win;   
     }
 
-    std::cout << alpha << beta;
 
     Coords possibleMoves = game.next_possible_moves();
     if(possibleMoves.size() == 0) {
